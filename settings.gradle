@@ -1,6 +1,9 @@
 pluginManagement {
-	repositories {
-		gradlePluginPortal()
-	}
+    repositories {
+        gradlePluginPortal()
+    }
 }
 rootProject.name = 'sberbook-root'
+include ':sberbook:profile',
+        ':sberbook:subscribtion',
+        ':sberbook:authorization'
