@@ -1,7 +1,7 @@
 # Sberbook
-### Правила
-[Правила](https://github.com/SBT2019/Sberbook/blob/master/CONTRIBUTING.md).
-Пожалуйста следуйте правилам при разработке, чтобы не возникло недоразумений.
+### Правила 
+[Правила](https://github.com/SBT2019/Sberbook/tree/master/documents/CONTRIBUTING.md).
+Пожалуйста следуйте правилам при разработке, чтобы не возникло недоразумений. :shipit:
 ### Сервисы
 1.	Авторизация
 2.	Лента
@@ -12,3 +12,6 @@
 7.	Твиты
 8.	Load Balancer
 9.	Service Register
+
+![минимальная схема проекта](https://github.com/SBT2019/Sberbook/tree/master/documents/sberbook.png)
+
