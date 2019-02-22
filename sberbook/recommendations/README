@@ -1,0 +1,4 @@
+Для запуска на linux системах выполнить:
+. venv/bin/activate
+python app.py
+На Windows смотрите tutorial, как запустить через виртуальное окружение.
