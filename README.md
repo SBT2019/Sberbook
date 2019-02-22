@@ -13,5 +13,5 @@
 8.	Load Balancer
 9.	Service Register
 
-![минимальная схема проекта](https://github.com/SBT2019/Sberbook/tree/master/documents/sberbook.png)
+![default](https://user-images.githubusercontent.com/22501063/53276168-0b971a80-370f-11e9-8fdb-96c52a82413b.png)
 
