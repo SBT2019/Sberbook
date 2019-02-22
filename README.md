@@ -10,3 +10,5 @@
 5.	Рекомендации
 6.	Подписки
 7.	Твиты
+8.	Load Balancer
+9.	Service Register
