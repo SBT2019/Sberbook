@@ -4,6 +4,7 @@ pluginManagement {
     }
 }
 rootProject.name = 'sberbook-root'
+
 include ':sberbook:profile',
         ':sberbook:subscription',
         ':sberbook:authorization',

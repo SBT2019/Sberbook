@@ -12,6 +12,14 @@ public class ProfileController {
         return 40;
     }
 
+    @GetMapping("/findUser")
+    public Profile findUser(String credential) {
+        if (isEmail(credential)) return new Profile("Alex", "gfdgdfgdf");
+        if (isPhone(credential)) return new Profile("Dima", "gfdgdfgdf");;
+
+        return new Profile("Dasha", "FSDGFDGDF");
+    }
+
     private boolean isPhone(String credential) {
         return true;
     }

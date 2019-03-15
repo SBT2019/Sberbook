@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthorizationController {
+    private final ProfileClient profileClient;
 
-    /**
-     * TODO 1.Запоминать loginAttempt : > n ? дополнительная верификация
-     */
+    public AuthorizationController(ProfileClient profileClient) {
+        this.profileClient = profileClient;
+    }
 
     @GetMapping("/login")
     public boolean login(String credential, String pass){
-       return findUser(credential, getUserId(pass));
+        Profile profile = profileClient.findProfile(credential);
+        if (profile == null) return false;
+
+        return profile.validatePassword(pass);
     }
 
     @GetMapping("/recover")
