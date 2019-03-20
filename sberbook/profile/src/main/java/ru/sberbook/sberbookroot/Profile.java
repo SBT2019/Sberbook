@@ -1,6 +1,7 @@
 package ru.sberbook.sberbookroot;
 
 public class Profile {
+
     private String login;
     private String passwordHash;
     private String resetToken;
