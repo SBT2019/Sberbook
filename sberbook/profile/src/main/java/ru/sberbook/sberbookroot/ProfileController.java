@@ -12,6 +12,25 @@ public class ProfileController {
         return 40;
     }
 
+    @GetMapping("/findUser")
+    public Profile findUser(String credential) {
+        if (isEmail(credential)) return new Profile("Alex", "gfdgdfgdf");
+        if (isPhone(credential)) return new Profile("Dima", "gfdgdfgdf");;
+
+        return new Profile("Dasha", "FSDGFDGDF");
+    }
+
+    @GetMapping("/findUserByResetToken")
+    public Profile findUserByResetToken(String token){
+        return new Profile("Roma","gfdgdfgdf");
+    }
+
+    @GetMapping("/updateUser")
+    public boolean updateUser(Profile profile){
+        return true;
+    }
+
+
     private boolean isPhone(String credential) {
         return true;
     }
