@@ -20,7 +20,32 @@ public class ProfileController {
         return new Profile("Dasha", "FSDGFDGDF");
     }
 
-    @GetMapping("/findUserByResetToken")
+    @GetMapping("/createUser")
+    public boolean createUser(Profile profile) {
+        //TODO add user to cash
+        return true;
+    }
+
+    @GetMapping("/checkUser")
+    public boolean checkUser(String credential) {
+        if (isEmail(credential)) return true; //TODO find user by email
+        if (isPhone(credential)) return true; //TODO find user by phone
+
+        return false;
+    }
+
+    @GetMapping("/addUser")
+    public boolean addUser(Profile profile) {
+        //TODO add user to db
+        return true;
+    }
+
+    @GetMapping("/findUserByConfirmationCode") //TODO ?
+    public Profile findUserByConfirmationCode(String confirmationCode){
+        return new Profile("Roma","gfdgdfgdf"); //in cache
+    }
+
+    @GetMapping("/findUserByResetToken") //TODO ?
     public Profile findUserByResetToken(String token){
         return new Profile("Roma","gfdgdfgdf");
     }

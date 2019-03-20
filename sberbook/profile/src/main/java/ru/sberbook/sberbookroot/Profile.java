@@ -1,8 +1,10 @@
 package ru.sberbook.sberbookroot;
 
 public class Profile {
-    private final String login;
-    private final String passwordHash;
+    private String login;
+    private String passwordHash;
+    private String resetToken;
+    private String confirmationCode;
 
     public Profile(String login, String passwordHash) {
         this.login = login;

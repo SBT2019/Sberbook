@@ -3,45 +3,52 @@ package ru.sberbook.sberbookroot;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.UUID;
+
+import static ru.sberbook.sberbookroot.EmailService.sendMail;
 
 @RestController
 public class RegistrationController {
 
+    private final ProfileClient profileClient;
+
+    public RegistrationController(ProfileClient profileClient) {
+        this.profileClient = profileClient;
+    }
+
     @GetMapping("/registration")
-    public boolean registerUserAccount(ArrayList<String> credentials, String pass) {
-        if (!checkUserForExistence(credentials)){
-            //creating user in cache
-            //redirecting -> /confirmation
-            return true;
-        }
+    public boolean registerUserAccount(String credential, String pass) {
+        if (profileClient.checkProfile(credential)) return false;
+
+        Profile profile = new Profile(credential,pass);
+        String confirmationCode = UUID.randomUUID().toString();
+        profile.setConfirmationCode(confirmationCode);
+        profile.setPassword(pass);
+        profile.setLogin(credential);
+        profileClient.createUser(profile);
+
+        if (isEmail(credential)) return sendMail(credential, confirmationCode);
+        if (isPhone(credential)) return true; //TODO sending msg
+
         return false;
     }
 
     @GetMapping("/confirmation")
-    public boolean confirmation(ArrayList<String> credentials, String pass, int code){
-        if (code == 1) {
-            //creating User in db
-            return true;
-        }
-        return false; //redirecting to -> /registration
+    public boolean confirmation(String credentials, String confirmationCode){
+        Profile profile = profileClient.findUserByConfirmationCode(confirmationCode);
+        if (profile == null) return false;
+
+        profileClient.addUser(profile);
+        return true;
     }
 
-    private boolean checkUserForExistence(ArrayList<String> credentials){
-        for (String credential: credentials ) {
-            if (checkUserByCredential(credential)) return true;
-        }
-        return false;
+    private boolean isPhone(String credential) {
+        return true;
     }
 
-    private boolean checkUserByCredential(String credential){
-        //request to host:9000/getUserId?credential=credential
-        Random random = new Random();
-        if (random.nextInt(5)%2 == 0) return true;
-        return false;
+    private boolean isEmail(String credential) {
+        return credential.contains("@");
     }
-
 
 
 
