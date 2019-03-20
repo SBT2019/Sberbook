@@ -38,6 +38,7 @@ public class RegistrationController {
         Profile profile = profileClient.findUserByConfirmationCode(confirmationCode);
         if (profile == null) return false;
 
+        profile.setConfirmationCode(null);
         profileClient.addUser(profile);
         return true;
     }
