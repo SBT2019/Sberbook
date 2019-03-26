@@ -1,5 +1,6 @@
 package ru.sberbook.sberbookroot.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sberbook.sberbookroot.dto.ProfileDto;
@@ -7,62 +8,53 @@ import ru.sberbook.sberbookroot.entity.Profile;
 import ru.sberbook.sberbookroot.repository.ProfileRepo;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
-
     private final ProfileRepo profileRepo;
-
-    @Autowired
-    public ProfileServiceImpl(ProfileRepo profileRepo) {
-        this.profileRepo = profileRepo;
-    }
 
     @Override
     public boolean createUser(ProfileDto profileDto) {
         String credential = profileDto.getCredential();
-        boolean notMail = !credential.contains("@");
+        boolean isEmail = credential.contains("@");
 
         Profile profile = new Profile();
         profile.setPassword(profileDto.getPasswordHash());
 
-        boolean userInDB = checkInDb(credential, notMail);
+        boolean userInDB = checkInDb(credential, isEmail);
 
-        if (!userInDB) {
-            if (notMail) {
-                profile.setLogin(credential);
-            } else {
-                profile.setEmail(credential);
-            }
-        } else {
-            throw new RuntimeException("Пользователь с такими данными уже существует");
+        if (userInDB) {
+            throw new IllegalStateException("User " + profile.getLogin() + " already exists");
         }
+
+        if (isEmail) {
+            profile.setEmail(credential);
+        } else {
+            profile.setLogin(credential);
+        }
+
         profileRepo.save(profile);
         return true;
     }
 
     @Override
     public Profile findProfile(String credential) {
-        Profile profile;
-        if (credential.contains("@")) {
-            profile = profileRepo.findByEmail(credential);
-        } else {
-            profile = profileRepo.findByLogin(credential);
-        }
-        return profile;
+        return credential.contains("@") ?
+                profileRepo.findByEmail(credential)
+                : profileRepo.findByLogin(credential);
     }
 
     /**
      * Проверяет есть ли в базе такой профиль
+     *
      * @param credential - мыло или логин
-     * @param NotEmail - параметр, какой именно credential
+     * @param email      - параметр, какой именно credential
      * @return возвращает, bool есть или нет в базе
      */
-    private boolean checkInDb(String credential, Boolean NotEmail) {
-        if(NotEmail) {
-            Profile profile = profileRepo.findByLogin(credential);
-            return profile != null;
-        } else {
-            Profile profile = profileRepo.findByEmail(credential);
-            return profile != null;
-        }
+    private boolean checkInDb(String credential, boolean email) {
+        Profile profile = email ?
+                profileRepo.findByEmail(credential) :
+                profileRepo.findByLogin(credential);
+
+        return profile != null;
     }
 }

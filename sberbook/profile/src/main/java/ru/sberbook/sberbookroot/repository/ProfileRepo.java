@@ -5,5 +5,6 @@ import ru.sberbook.sberbookroot.entity.Profile;
 
 public interface ProfileRepo extends JpaRepository<Profile,Long> {
     Profile findByEmail(String email);
+
     Profile findByLogin(String login);
 }

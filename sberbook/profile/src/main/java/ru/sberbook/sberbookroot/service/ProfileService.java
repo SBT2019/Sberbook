@@ -5,5 +5,6 @@ import ru.sberbook.sberbookroot.entity.Profile;
 
 public interface ProfileService {
     boolean createUser(ProfileDto profileDto);
+
     Profile findProfile(String credential);
 }
