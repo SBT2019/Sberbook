@@ -10,4 +10,5 @@ include ':sberbook:profile',
         ':sberbook:authorization',
         ':sberbook:registration',
         ':sberbook:tweet',
-        ':sberbook:newsFeed'
+        ':sberbook:newsFeed',
+        ':sberbook:service-discovery'

@@ -3,11 +3,11 @@ package ru.sberbook.sberbookroot;
 import java.util.List;
 
 public class TweetEntity {
-    private final long userId;
     private final long tweetId;
+    private final long userId;
+    private final String text = "It's test tweet";
     private final List<Long> childId;
     private final Long parentId;
-    private final String text = "It's test tweet";
 
     TweetEntity(long userId, long tweetId, List<Long> childId, Long parentId) {
         this.userId = userId;

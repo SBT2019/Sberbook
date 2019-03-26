@@ -1,37 +1,17 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 
-@Service
-public class SubscriptionService {
-    private final SubscriptionsRepository subscriptionsRepository;
-    private final  SubscribersRepository subscribersRepository;
+public interface SubscriptionService {
+    List<Long> getAllSubscriptions(long userId);
 
-    public SubscriptionService(SubscriptionsRepository subscriptionsRepository,SubscribersRepository subscribersRepository){
-        this.subscriptionsRepository = subscriptionsRepository;
-        this.subscribersRepository = subscribersRepository;
-    }
+    List<Long> getAllSubscribers(long userId);
 
-    public List<Long> getAllSubscriptions(String userId) {
-        return Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L);
-    }
+    void addSubscription(String userId, String subscriptionId);
 
-    public List<Long> getAllSubscribers(String userId) {
-        return Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L);
-    }
+    void addSubscriber(String userId, String subscriberId);
 
-    public void addSubscription(String userId, String subscriptionId) {
-    }
+    void deleteSubscription(String userId, String subscriptionId);
 
-    public void addSubscriber(String userId, String subscriberId) {
-    }
-
-    public void deleteSubscription(String userId, String subscriptionId) {
-    }
-
-    public void deleteSubscriber(String userId, String subscriberId) {
-    }
+    void deleteSubscriber(String userId, String subscriberId);
 }

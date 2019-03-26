@@ -1,28 +1,19 @@
-package ru.sberbook.sberbookroot.domain;
+package ru.sberbook.feed.client;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
 public class Tweet {
-    @Id
-    @GeneratedValue
     private long tweetId;
     private long userId;
     private String text;
-    private String tag;
 
     public Tweet() {
         this.userId = -1;
         this.text = "No text";
-        this.tag = "No tag";
     }
 
     public Tweet(long userId, String text, String tag) {
         this.userId = userId;
         this.text = text;
-        this.tag = tag;
     }
 
     public long getTweetId() {
@@ -45,15 +36,4 @@ public class Tweet {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
 }

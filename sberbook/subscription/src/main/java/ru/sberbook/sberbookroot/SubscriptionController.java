@@ -15,12 +15,12 @@ public class SubscriptionController {
     }
 
     @GetMapping("/getAllSubscriptions")
-    public List<Long> getAllSubscriptions(String userId) {
+    public List<Long> getAllSubscriptions(long userId) {
         return service.getAllSubscriptions(userId);
     }
 
     @GetMapping("/getAllSubscribers")
-    public List<Long> getAllSubscribers(String userId) {
+    public List<Long> getAllSubscribers(long userId) {
         return service.getAllSubscribers(userId);
     }
 

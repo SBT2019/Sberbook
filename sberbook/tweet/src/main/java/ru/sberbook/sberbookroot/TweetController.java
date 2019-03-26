@@ -20,15 +20,23 @@ public class TweetController {
         if (userId <= 0L) return emptyList();
 
         return asList(
-                new TweetEntity(userId, 123, null, null),
+                new TweetEntity(userId, 123, emptyList(), null),
                 new TweetEntity(userId, 124, asList(555L, 444L), 345L)
+        );
+    }
+
+    @GetMapping("/getTweetsByUserIds")
+    public List<TweetEntity> getTweetsByUserId(long[] userIds) {
+        return asList(
+                new TweetEntity(23, 123, emptyList(), null),
+                new TweetEntity(3, 124, asList(555L, 444L), 345L)
         );
     }
 
     @GetMapping("/getTweetByTweetId")
     public TweetEntity getTweetByTweetId(long tweetId) {
         //Getting tweet by tweetId
-        return tweetId > 0L ? new TweetEntity(111, tweetId, null, 234L) : null;
+        return tweetId > 0L ? new TweetEntity(111, tweetId, emptyList(), 234L) : null;
     }
 
     @GetMapping("/getComments")
@@ -40,7 +48,7 @@ public class TweetController {
 
         return asList(
                 new TweetEntity(122, 155, asList(111L), tweetId),
-                new TweetEntity(125, 177, null, tweetId)
+                new TweetEntity(125, 177, emptyList(), tweetId)
         );
     }
 
