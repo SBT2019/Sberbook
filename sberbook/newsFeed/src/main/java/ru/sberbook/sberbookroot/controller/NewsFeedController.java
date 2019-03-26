@@ -10,18 +10,16 @@ import ru.sberbook.sberbookroot.domain.Tweet;
 import ru.sberbook.sberbookroot.repo.TweetsRepo;
 
 
-
-
 @Controller
 public class NewsFeedController {
+    private final TweetsRepo tweetsRepo;
 
-    @Autowired
-    private TweetsRepo tweetsRepo;
-
+    public NewsFeedController(TweetsRepo tweetsRepo) {
+        this.tweetsRepo = tweetsRepo;
+    }
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-
         Iterable<Tweet> tweets;
 
         if (filter != null && !filter.isEmpty()) {
@@ -34,27 +32,18 @@ public class NewsFeedController {
         model.addAttribute("filter", filter);
 
         return "main";
-
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam String text,
-                      @RequestParam String tag, Model model) {
-
+    public String add(String text,
+                      String tag, Model model) {
         if (text != null && tag != null) {
-
             Tweet tweet = new Tweet(1, text, tag);
-
             tweetsRepo.save(tweet);
-
         }
 
         Iterable<Tweet> tweets = tweetsRepo.findAll();
-
-        model.addAttribute ("tweets", tweets);
-
+        model.addAttribute("tweets", tweets);
         return "main";
     }
-
-
 }

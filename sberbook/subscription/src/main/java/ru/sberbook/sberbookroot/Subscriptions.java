@@ -8,12 +8,7 @@ public class Subscriptions {
     private Collection<UUID> subscribers;
     private Collection<UUID> subscriptions;
 
-
     public Subscriptions(String id){
         this.profileId = UUID.fromString(id);
-
     }
-
-
-
 }

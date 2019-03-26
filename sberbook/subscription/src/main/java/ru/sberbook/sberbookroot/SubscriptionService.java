@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public class SubscriptionService {
-    private SubscriptionsRepository subscriptionsRepository;
-    private SubscribersRepository subscribersRepository;
+    private final SubscriptionsRepository subscriptionsRepository;
+    private final  SubscribersRepository subscribersRepository;
 
     public SubscriptionService(SubscriptionsRepository subscriptionsRepository,SubscribersRepository subscribersRepository){
         this.subscriptionsRepository = subscriptionsRepository;
@@ -34,6 +34,4 @@ public class SubscriptionService {
 
     public void deleteSubscriber(String userId, String subscriberId) {
     }
-
-
 }

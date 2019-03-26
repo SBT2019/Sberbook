@@ -9,7 +9,6 @@ import static ru.sberbook.sberbookroot.EmailService.sendMail;
 
 @RestController
 public class RegistrationController {
-
     private final ProfileClient profileClient;
 
     public RegistrationController(ProfileClient profileClient) {
@@ -50,7 +49,4 @@ public class RegistrationController {
     private boolean isEmail(String credential) {
         return credential.contains("@");
     }
-
-
-
 }

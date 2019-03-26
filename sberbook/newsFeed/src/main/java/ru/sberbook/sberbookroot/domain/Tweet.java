@@ -1,14 +1,11 @@
 package ru.sberbook.sberbookroot.domain;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 
 @Entity
 public class Tweet {
-
     @Id
     @GeneratedValue
     private long tweetId;
@@ -16,7 +13,7 @@ public class Tweet {
     private String text;
     private String tag;
 
-    public Tweet(){
+    public Tweet() {
         this.userId = -1;
         this.text = "No text";
         this.tag = "No tag";
