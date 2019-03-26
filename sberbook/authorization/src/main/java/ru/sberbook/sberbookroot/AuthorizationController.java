@@ -1,23 +1,22 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-import static ru.sberbook.sberbookroot.EmailService.sendMail;
-
 @RestController
 public class AuthorizationController {
     private final ProfileClient profileClient;
+    private final EmailService emailService;
 
-    public AuthorizationController(ProfileClient profileClient) {
+    public AuthorizationController(ProfileClient profileClient, EmailService emailService) {
         this.profileClient = profileClient;
+        this.emailService = emailService;
     }
 
     @PostMapping("/login")
-    public boolean login(String credential, String pass){
+    public boolean login(String credential, String pass) {
         Profile profile = profileClient.findProfile(credential);
         if (profile == null) return false;
 
@@ -25,21 +24,21 @@ public class AuthorizationController {
     }
 
     @PostMapping("/forgot")
-    public boolean recover(String credential){
+    public boolean recover(String credential) {
         Profile profile = profileClient.findProfile(credential);
 
         String resetToken = UUID.randomUUID().toString();
         profile.setResetToken(resetToken);
         profileClient.updateUser(profile);
 
-        if (isEmail(credential)) return sendMail(credential, resetToken);
+        if (isEmail(credential)) return emailService.sendMail(credential, resetToken);
         if (isPhone(credential)) return false; //TODO sending msg
 
         return false;
     }
 
     @PostMapping("/reset")
-    public boolean changePass(String credential, String newPass, String resetCode){
+    public boolean changePass(String credential, String newPass, String resetCode) {
         Profile profile = profileClient.findUserByResetToken(resetCode);
         if (profile == null) return false;
 

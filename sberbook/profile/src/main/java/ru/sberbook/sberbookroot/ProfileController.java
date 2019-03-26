@@ -1,6 +1,7 @@
 package ru.sberbook.sberbookroot;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,7 +21,7 @@ public class ProfileController {
         return new Profile("Dasha", "FSDGFDGDF");
     }
 
-    @GetMapping("/createUser")
+    @PostMapping("/createUser")
     public boolean createUser(Profile profile) {
         //TODO add user to cash
         return true;
@@ -34,7 +35,7 @@ public class ProfileController {
         return false;
     }
 
-    @GetMapping("/addUser")
+    @PostMapping("/addUser")
     public boolean addUser(Profile profile) {
         //TODO add user to db
         return true;
@@ -50,7 +51,7 @@ public class ProfileController {
         return new Profile("Roma","gfdgdfgdf");
     }
 
-    @GetMapping("/updateUser")
+    @PostMapping("/updateUser")
     public boolean updateUser(Profile profile){
         return true;
     }
