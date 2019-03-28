@@ -1,52 +1,60 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 @RestController
 public class AuthorizationController {
     private final ProfileClient profileClient;
+    private final EmailService emailService;
 
-    public AuthorizationController(ProfileClient profileClient) {
+    public AuthorizationController(ProfileClient profileClient, EmailService emailService) {
         this.profileClient = profileClient;
+        this.emailService = emailService;
     }
 
-    @GetMapping("/login")
-    public boolean login(String credential, String pass){
+    @PostMapping("/login")
+    public boolean login(String credential, String pass) {
         Profile profile = profileClient.findProfile(credential);
         if (profile == null) return false;
 
         return profile.validatePassword(pass);
     }
 
-    @GetMapping("/recover")
-    public boolean recover(String credential, String type){
-        if (type.equals("e-mail") || (type.equals("phone"))){
-            System.out.println("Password reset code sent by email");
-            return true;
-        }
-        if (type.equals("phone")){
-            System.out.println("Password reset code sent via SMS");
-            return true;
-        }
+    @PostMapping("/forgot")
+    public boolean recover(String credential) {
+        Profile profile = profileClient.findProfile(credential);
+
+        String resetToken = UUID.randomUUID().toString();
+        profile.setResetToken(resetToken);
+        profileClient.updateUser(profile);
+
+        if (isEmail(credential)) return emailService.sendMail(credential, resetToken);
+        if (isPhone(credential)) return false; //TODO sending msg
+
         return false;
     }
 
-    @GetMapping("/changePass")
-    public boolean changePass(String credential, int code){
-        if (code == 1) return true; //saving in db new pass
-        return false;
-    }
+    @PostMapping("/reset")
+    public boolean changePass(String credential, String newPass, String resetCode) {
+        Profile profile = profileClient.findUserByResetToken(resetCode);
+        if (profile == null) return false;
 
-    private long getUserId(String credential){
-        //request to host:9000/getUserId?credential=credential
-        return 1;
-    }
+        profile.setPassword(newPass);
+        profile.setResetToken(null);
+        profileClient.updateUser(profile);
 
-    private boolean findUser(String credential, long id){
-        //request to db
         return true;
+    }
+
+    private boolean isPhone(String credential) {
+        return true;
+    }
+
+    private boolean isEmail(String credential) {
+        return credential.contains("@");
     }
 
 }
