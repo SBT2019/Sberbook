@@ -1,6 +1,6 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,10 @@ import javax.mail.internet.MimeMessage;
 /**
  * Created by Violetta on 2019-03-20
  */
+@RequiredArgsConstructor
 @Service
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
-
-    public EmailServiceImpl(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
 
     @Override
     public boolean sendMail(String to, String resetToken) {

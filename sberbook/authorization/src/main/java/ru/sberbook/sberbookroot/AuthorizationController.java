@@ -1,19 +1,17 @@
 package ru.sberbook.sberbookroot;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
+import java.util.regex.Pattern;
 
+@RequiredArgsConstructor
 @RestController
 public class AuthorizationController {
     private final ProfileClient profileClient;
     private final EmailService emailService;
-
-    public AuthorizationController(ProfileClient profileClient, EmailService emailService) {
-        this.profileClient = profileClient;
-        this.emailService = emailService;
-    }
 
     @PostMapping("/login")
     public boolean login(String credential, String pass) {
@@ -38,7 +36,7 @@ public class AuthorizationController {
     }
 
     @PostMapping("/reset")
-    public boolean changePass(String credential, String newPass, String resetCode) {
+    public boolean changePass(String newPass, String resetCode) {
         Profile profile = profileClient.findUserByResetToken(resetCode);
         if (profile == null) return false;
 
@@ -50,11 +48,21 @@ public class AuthorizationController {
     }
 
     private boolean isPhone(String credential) {
-        return true;
+        String regex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+
+        Pattern pattern = Pattern.compile(regex);
+        if (credential == null) return false;
+        return pattern.matcher(credential).matches();
     }
 
     private boolean isEmail(String credential) {
-        return credential.contains("@");
-    }
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
 
+        Pattern pattern = Pattern.compile(regex);
+        if (credential == null) return false;
+        return pattern.matcher(credential).matches();
+    }
 }

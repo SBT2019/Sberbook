@@ -1,5 +1,8 @@
 package ru.sberbook.sberbookroot;
 
+import lombok.Setter;
+
+@Setter
 public class Profile {
     private String login;
     private String passwordHash;
@@ -10,14 +13,5 @@ public class Profile {
         return String.valueOf(pass.hashCode()).equals(passwordHash);
     }
 
-    public void setResetToken(String resetToken) {
-        this.resetToken = resetToken;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public void setPassword(String password) { this.passwordHash = String.valueOf(password.hashCode()); }
-
 }
