@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "description": "profile-service",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
+    "jquery": "^3.3.1",
     "npm": "^6.8.0",
+    "popper.js": "^1.14.7",
     "prop-types": "15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
