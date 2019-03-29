@@ -1,0 +1,19 @@
+dependencies {
+    
+}
+
+task installJavascriptDependencies(type: Exec) {
+    commandLine "npm", "install"
+}
+
+task webpack(type: Exec, dependsOn: installJavascriptDependencies) {
+    inputs.file("webpack.config.js")
+    commandLine "$projectDir/node_modules/.bin/webpack"
+}
+
+
+build.dependsOn 'webpack'
+
+//clean.delete << file('node_modules')
+//clean.delete << file('build')
+clean.delete << file('src/main/resources/static/dist')

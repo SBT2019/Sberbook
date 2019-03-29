@@ -15,3 +15,5 @@ include ':sberbook:security:authorization',
 
 include ':sberbook:infra:service-discovery',
         ':sberbook:infra:gateway'
+
+include ':sberbook:ui:profile_ui'
