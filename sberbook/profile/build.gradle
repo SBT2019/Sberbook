@@ -19,6 +19,6 @@ task webpack(type: Exec, dependsOn: installJavascriptDependencies) {
 
 build.dependsOn 'webpack'
 
-clean.delete << file('node_modules')
-clean.delete << file('build')
+//clean.delete << file('node_modules')
+//clean.delete << file('build')
 clean.delete << file('src/main/resources/static/dist')
