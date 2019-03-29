@@ -32,4 +32,9 @@ public class Profile {
 
     @JsonIgnore
     private String password;
+
+    public Profile(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 }
