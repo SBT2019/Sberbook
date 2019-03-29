@@ -5,10 +5,13 @@ pluginManagement {
 }
 rootProject.name = 'sberbook-root'
 
-include ':sberbook:profile',
-        ':sberbook:subscription',
-        ':sberbook:authorization',
-        ':sberbook:registration',
-        ':sberbook:tweet',
-        ':sberbook:newsFeed',
-        ':sberbook:service-discovery'
+include ':sberbook:core:profile',
+        ':sberbook:core:subscription',
+        ':sberbook:core:tweet',
+        ':sberbook:core:newsFeed'
+
+include ':sberbook:security:authorization',
+        ':sberbook:security:registration'
+
+include ':sberbook:infra:service-discovery',
+        ':sberbook:infra:gateway'
