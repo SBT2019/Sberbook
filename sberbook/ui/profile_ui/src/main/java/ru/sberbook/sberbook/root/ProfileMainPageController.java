@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProfileMainPageController {
 
-    @GetMapping("/profile_page")
+    @GetMapping("/profile")
     public String getPage() {
         return "index";
     }
