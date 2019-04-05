@@ -1,0 +1,21 @@
+[
+  {
+    "tweetId": 123,
+    "userId": 23,
+    "text": "It's test tweet",
+    "childId": [],
+    "parentId": null,
+    "childCount": 0
+  },
+  {
+  "tweetId": 124,
+  "userId": 3,
+  "text": "It's test tweet",
+  "childId": [
+    555,
+    444
+  ],
+  "parentId": 345,
+  "childCount": 2
+}
+]
