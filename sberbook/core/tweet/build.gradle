@@ -1,5 +1,5 @@
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 //http://localhost:9400/getTweetsByUserId?userId=13

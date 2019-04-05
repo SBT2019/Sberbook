@@ -1,14 +1,20 @@
 package ru.sberbook.sberbookroot;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.stream.IntStream.range;
+import static org.springframework.http.MediaType.APPLICATION_STREAM_JSON_VALUE;
+import static reactor.core.publisher.Flux.fromStream;
 
 @RestController
 public class TweetController {
@@ -25,11 +31,16 @@ public class TweetController {
         );
     }
 
-    @GetMapping("/getTweetsByUserIds")
-    public List<TweetEntity> getTweetsByUserId(long[] userIds) {
-        return asList(
-                new TweetEntity(23, 123, emptyList(), null),
-                new TweetEntity(3, 124, asList(555L, 444L), 345L)
+    @GetMapping(value = "/getTweetsByUserIds", produces = APPLICATION_STREAM_JSON_VALUE)
+    public Flux<TweetEntity> all(long userId) {
+        return fromStream(range(0, 100_000)
+                .mapToObj(i -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    return new TweetEntity(userId, i, emptyList(), (long) i - 1);
+                })
         );
     }
 
