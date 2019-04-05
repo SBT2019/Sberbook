@@ -1,0 +1,123 @@
+.tweetbackground {
+    width: 60%;
+    height: auto;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(225, 232, 237);
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  
+.leftside {
+    height: 325px;
+}
+  
+.head {
+    padding-left: 30px;
+    padding-top: 20px;
+    height: 40%
+}
+.profilepic {
+    float:left;
+    padding-right: 20px;
+    padding-top: 15px;
+    height: 30px
+}
+.nameheader {
+    float:left;
+    padding-top: 0px;
+    margin-top: 0px;
+    width: auto;
+    height: inherit;
+}
+.icon {
+    position: relative;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 0px;
+    margin-bottom: 0;
+}
+  
+.name {
+    color: rgb(0, 0, 0);
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+  
+.userhandle {
+    position: absolute;
+    color: rgb(104, 109, 129);
+    font-weight: normal;
+    font-size: 1em;
+    margin-top: 0;
+}
+  
+  
+.bottomhalf {
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    height: 60%;
+}
+  
+.userinput {
+    color: rgb(0, 0, 0);
+    font-weight: normal;;
+    padding: 2.5px;
+    margin: 0px;
+}
+  
+.timestamp {
+    color: rgb(101, 116, 127);
+    font-weight: normal;
+    display: inline-block;
+    padding: 2.5px;
+    margin: 0px;
+}
+.rr {
+    display: inline-block;
+    color: rgb(105, 120, 130)
+}
+.rrspace1{
+    padding-right: 30px;
+    display: inline-block;
+}
+.rrspace2{
+    padding-right: 5px;
+    display: inline-block;
+}
+.rrspace3{
+    padding-right: 30px;
+    display: inline-block;
+}
+.rrspace4{
+    padding-right: 5px;
+    display: inline-block;
+}
+.rrspace5{
+    padding-right: 0px;
+    display: inline-block;
+}
+  
+  
+.followbutton {
+      position: absolute;
+      float: left;
+      top: 0;
+      right:0;
+      margin-top: 30px;
+      right: 40px;
+      width: auto;
+      background-color: rgb(255, 255, 255);
+      border-color: rgb(85, 172, 238);
+      border: 0;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 10px;
+      font-family: "Helvetica";
+      font-size: 20px;
+      color: rgb(85, 172, 238);
+      padding: 0.5em;
+  }

@@ -1,0 +1,10 @@
+.logout-button {
+    border: none;
+    background-color: inherit;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    text-decoration: underline;
+}

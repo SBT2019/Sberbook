@@ -1,0 +1,21 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+}
+
+task installJavascriptDependencies(type: Exec) {
+    commandLine "npm", "install"
+}
+
+task webpack(type: Exec, dependsOn: installJavascriptDependencies) {
+    inputs.file("webpack.config.js")
+    commandLine "$projectDir/node_modules/.bin/webpack"
+}
+
+
+build.dependsOn 'webpack'
+
+//clean.delete << file('node_modules')
+//clean.delete << file('build')
+clean.delete << file('src/main/resources/static/dist')

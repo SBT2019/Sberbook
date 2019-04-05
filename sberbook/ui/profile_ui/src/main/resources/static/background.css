@@ -1,0 +1,8 @@
+.background {
+    height: 300px;
+    width: 100%;
+    background: url(./png/back.png);
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+}

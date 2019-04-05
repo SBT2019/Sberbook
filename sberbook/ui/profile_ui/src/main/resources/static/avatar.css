@@ -1,0 +1,24 @@
+.avatar-container {
+  position: absolute;
+  top: -120px;
+  left: 100px;
+
+  width: 210px;
+  height: 210px;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 210px;
+    height: 210px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+    border-radius: 50%;
+  }
+
+.avatar:hover {
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+  border-width: 4px;
+}
