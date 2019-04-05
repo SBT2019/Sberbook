@@ -11,8 +11,8 @@ task installJavascriptDependencies(type: Exec) {
 task webpack(type: Exec, dependsOn: installJavascriptDependencies) {
     inputs.file("webpack.config.js")
     commandLine "$projectDir/node_modules/.bin/webpack"
+    commandLine "npm run-script dev".split(' ')
 }
-
 
 build.dependsOn 'webpack'
 
