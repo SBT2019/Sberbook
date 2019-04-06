@@ -5,15 +5,15 @@ pluginManagement {
 }
 rootProject.name = 'sberbook-root'
 
-//include ':sberbook:core:profile',
-//        ':sberbook:core:subscription',
-//        ':sberbook:core:tweet'
-//        ':sberbook:core:newsFeed'
+include ':sberbook:core:profile',
+        ':sberbook:core:subscription',
+        ':sberbook:core:tweet'
+        ':sberbook:core:newsFeed'
 
-//include ':sberbook:security:authorization',
-//        ':sberbook:security:registration'
+include ':sberbook:security:authorization',
+        ':sberbook:security:registration'
 
-//include ':sberbook:infra:service-discovery',
-//        ':sberbook:infra:gateway'
+include ':sberbook:infra:service-discovery',
+        ':sberbook:infra:gateway'
 
 include ':sberbook:ui:profile_ui'
