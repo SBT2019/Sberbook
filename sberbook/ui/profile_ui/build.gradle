@@ -36,7 +36,8 @@ task webpack(type: NpmTask, dependsOn: npmInstall) {
 
 build.dependsOn 'webpack'
 
-//clean.delete << file('node_modules')
-clean.delete << file('build')
-clean.delete << file('out')
-clean.delete << file('src/main/resources/static/dist')
+clean {
+    delete 'build'
+    delete 'out'
+    delete 'src/main/resources/static/dist'
+}
