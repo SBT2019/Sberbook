@@ -32,14 +32,14 @@ class ButtonBar extends React.Component {
         this.setState({
             subscribers: this.state.subscribers + 1
         });
-    };
+    }
 
     likeHandler = () => {
         console.log("Click my likes")
         this.setState({
             likes: this.state.likes + 1
         });
-    };
+    }
 
     render() {
         const {tweets, subscriptions, subscribers, likes} = this.state;
@@ -48,7 +48,7 @@ class ButtonBar extends React.Component {
                 <Avatar/>
                 <div className="toolbar-container">
                     <button className="button toolbar-button1" onClick={this.tweetHandler}>
-                        <h5>Твит</h5>
+                        <h5>Твиты</h5>
                         <p>{tweets}</p>
                     </button>
                     <button className="button toolbar-button2" onClick={this.subscriptionsHandler}>

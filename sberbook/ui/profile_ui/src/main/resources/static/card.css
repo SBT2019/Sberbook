@@ -1,123 +1,91 @@
-.tweetbackground {
-    width: 60%;
-    height: auto;
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    border: 3px solid rgb(225, 232, 237);
-    border-radius: 10px;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  
-.leftside {
-    height: 325px;
+body{
+  background: rgb(244, 248, 249);
+  padding: 20px 40px;
+  font-family: helvetica;
 }
-  
-.head {
-    padding-left: 30px;
-    padding-top: 20px;
-    height: 40%
+
+.main-box{
+  margin-top: 5px; 
+  border: 2px solid rgb(225, 232, 237);
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  padding: 35px 35px;
+  width: 600px;
+  height: auto;
+  position: relative;
+  left: 200px
 }
-.profilepic {
-    float:left;
-    padding-right: 20px;
-    padding-top: 15px;
-    height: 30px
+
+#profile-pic{
+  float:left;
 }
-.nameheader {
-    float:left;
-    padding-top: 0px;
-    margin-top: 0px;
-    width: auto;
-    height: inherit;
+
+#profile-pic img{
+  width: auto;
+  height: 80px;
+  border-radius: 5px;
 }
-.icon {
-    position: relative;
-    display: inline-block;
-    padding-left: 10px;
-    padding-right: 0px;
-    margin-bottom: 0;
+
+#profile-data{
+  float:left;
+  margin-left: 25px;
+  font-size: 24px;
+  font-weight: bold;
 }
-  
-.name {
-    color: rgb(0, 0, 0);
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 0;
+
+#profile-data img{
+  width: auto;
+  height: 20px;
+  margin-left: 5px; 
 }
-  
-.userhandle {
-    position: absolute;
-    color: rgb(104, 109, 129);
-    font-weight: normal;
-    font-size: 1em;
-    margin-top: 0;
+
+#id{
+  color: rgb(104, 109, 129);
+  font-size: 19px;
+  margin-left: -5px;
+  font-weight: bold;
 }
-  
-  
-.bottomhalf {
-    padding-left: 40px;
-    padding-top: 10px;
-    padding-bottom: 30px;
-    height: 60%;
+
+#follow-button{
+  float:right;
+  padding: 13px 27px;
+  background: rgb(255, 255, 255);
+  border: 3.5px solid rgb(85, 172, 238);
+  border-radius: 8px;
+  color: rgb(85, 172, 238);
+  font-size: 18px;
+  font-weight: bold;
 }
-  
-.userinput {
-    color: rgb(0, 0, 0);
-    font-weight: normal;;
-    padding: 2.5px;
-    margin: 0px;
+
+#follow-button img {
+  width: auto;
+  height: 20px;
 }
-  
-.timestamp {
-    color: rgb(101, 116, 127);
-    font-weight: normal;
-    display: inline-block;
-    padding: 2.5px;
-    margin: 0px;
+
+#text{
+  clear:left;
+  font-size: 18px;
+  padding: 25px 0px 12px 0px;
 }
-.rr {
-    display: inline-block;
-    color: rgb(105, 120, 130)
+
+#time{
+  font-size: 18px;
+  color: rgb(104, 109, 129);
+  padding-bottom: 30px;
 }
-.rrspace1{
-    padding-right: 30px;
-    display: inline-block;
+
+#footer {
+  margin-top: -20px;
 }
-.rrspace2{
-    padding-right: 5px;
-    display: inline-block;
+
+#footer img{
+  width: auto;
+  height: 15px;
 }
-.rrspace3{
-    padding-right: 30px;
-    display: inline-block;
+
+a {
+  color: rgb(104, 109, 129);
+  font-size: 14px;
+  text-decoration: none;
+  margin-right: 35px;
 }
-.rrspace4{
-    padding-right: 5px;
-    display: inline-block;
-}
-.rrspace5{
-    padding-right: 0px;
-    display: inline-block;
-}
-  
-  
-.followbutton {
-      position: absolute;
-      float: left;
-      top: 0;
-      right:0;
-      margin-top: 30px;
-      right: 40px;
-      width: auto;
-      background-color: rgb(255, 255, 255);
-      border-color: rgb(85, 172, 238);
-      border: 0;
-      border-width: 2px;
-      border-style: solid;
-      border-radius: 10px;
-      font-family: "Helvetica";
-      font-size: 20px;
-      color: rgb(85, 172, 238);
-      padding: 0.5em;
-  }

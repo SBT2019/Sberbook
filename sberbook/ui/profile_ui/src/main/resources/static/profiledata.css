@@ -12,9 +12,11 @@
 }
 .profile-container p {
     margin-top: -6px;
-    font-size: 12px;
     text-align: center;
-    color: grey;
+    color: rgb(104, 109, 129);
+    font-size: 14px;
+    margin-left: -5px;
+    font-weight: bold;
 }
 
 .profile-container .email {
