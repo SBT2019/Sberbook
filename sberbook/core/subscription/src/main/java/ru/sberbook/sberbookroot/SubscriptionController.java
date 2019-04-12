@@ -3,8 +3,11 @@ package ru.sberbook.sberbookroot;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_STREAM_JSON_VALUE;
 
 @RestController
 public class SubscriptionController {
@@ -14,8 +17,8 @@ public class SubscriptionController {
         this.service = service;
     }
 
-    @GetMapping("/getAllSubscriptions")
-    public List<Long> getAllSubscriptions(long userId) {
+    @GetMapping(value ="/getAllSubscriptions", produces = APPLICATION_STREAM_JSON_VALUE)
+    public Flux<Long> getAllSubscriptions(long userId) {
         try {
             return service.getAllSubscriptions(userId);
         } catch (Exception e) {

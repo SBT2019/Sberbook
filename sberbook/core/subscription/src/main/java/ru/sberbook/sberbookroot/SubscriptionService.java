@@ -1,9 +1,11 @@
 package ru.sberbook.sberbookroot;
 
+import reactor.core.publisher.Flux;
+
 import java.util.List;
 
 public interface SubscriptionService {
-    List<Long> getAllSubscriptions(long userId);
+    Flux<Long> getAllSubscriptions(long userId);
 
     List<Long> getAllSubscribers(long userId);
 

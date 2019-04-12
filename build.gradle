@@ -17,7 +17,7 @@ subprojects {
         implementation platform ('org.springframework.boot:spring-boot-dependencies:2.1.1.RELEASE')
 
         compile 'org.springframework.cloud:spring-cloud-starter-openfeign:2.1.1.RELEASE'
-        //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.1.1.RELEASE'
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.1.1.RELEASE'
         implementation 'org.projectlombok:lombok:1.16.8'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
