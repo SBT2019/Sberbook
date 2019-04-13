@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.sberbook.sberbookroot.dto.ProfileDto;
 import ru.sberbook.sberbookroot.entity.Profile;
 import ru.sberbook.sberbookroot.repository.ProfileRepo;
+import ru.sberbook.sberbookroot.util.ProfileUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -45,12 +46,12 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public long getUserId(String credential) {
-        if(isPhone(credential)) {
+        if(ProfileUtils.isPhone(credential)) {
             Profile profile = profileRepo.findByPhone(credential);
             return profile.getUser_id();
         }
 
-        if(isEmail(credential)) {
+        if(ProfileUtils.isEmail(credential)) {
             Profile profile = profileRepo.findByEmail(credential);
             return profile.getUser_id();
         }
@@ -59,12 +60,12 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public boolean checkUser(String credential) {
-        if(isPhone(credential)) {
+        if(ProfileUtils.isPhone(credential)) {
             Profile profile = profileRepo.findByPhone(credential);
             return profile != null;
         }
 
-        if(isEmail(credential)) {
+        if(ProfileUtils.isEmail(credential)) {
             Profile profile = profileRepo.findByEmail(credential);
             return profile != null;
         }
@@ -81,14 +82,6 @@ public class ProfileServiceImpl implements ProfileService {
     public Profile findUserByToken(String token) {
         Profile profile = profileRepo.findByToken(token);
         return profile;
-    }
-
-    private boolean isPhone(String credential) {
-        return !credential.contains("@");
-    }
-
-    private boolean isEmail(String credential) {
-        return credential.contains("@");
     }
 
     /**
