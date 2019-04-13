@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: DEST,
         filename: 'bundle.js',
-        publicPath: '/dist/'
+        publicPath: '/dist'
     },
     module: {
         rules: [
@@ -32,8 +32,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file-loader?name=/public/icons/[name].[ext]"
+                test: /\.(png|jpg|gif)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                    }
+                ]
             }
         ]
     }
