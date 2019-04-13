@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.sberbook.sberbookroot.entity.Profile;
+import ru.sberbook.sberbookroot.dto.ProfileData;
 import ru.sberbook.sberbookroot.service.ProfileUiService;
 
 @RestController
@@ -18,7 +18,7 @@ public class ProfileUiController {
     }
 
     @GetMapping("/getProfileData")
-    Profile getProfileData(String credential) {
+    ProfileData getProfileData(String credential) {
         try {
             return profileUiService.getProfile(credential);
         }
@@ -29,13 +29,13 @@ public class ProfileUiController {
     }
 
     @PostMapping("/setProfileData")
-    Profile setProfileData(Profile profile) {
+    boolean setProfileData(ProfileData profile) {
         try {
             return profileUiService.setProfile(profile);
         }
         catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 }

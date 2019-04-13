@@ -2,8 +2,10 @@ package ru.sberbook.sberbookroot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.sberbook.sberbookroot.dto.ProfileData;
 import ru.sberbook.sberbookroot.entity.Profile;
 import ru.sberbook.sberbookroot.repository.ProfileRepo;
+import ru.sberbook.sberbookroot.util.ProfileUtils;
 
 @Service
 public class ProfileUiServiceImpl implements ProfileUiService {
@@ -16,16 +18,35 @@ public class ProfileUiServiceImpl implements ProfileUiService {
     }
 
     @Override
-    public Profile getProfile(String credential) {
-        return credential.contains("@") ?
-                profileRepo.findByEmail(credential)
-                : profileRepo.findByPhone(credential);
+    public ProfileData getProfile(String credential) {
+        ProfileData profileData = new ProfileData();
+        Profile profile = new Profile();
+        if (ProfileUtils.isEmail(credential)) {
+            profile = profileRepo.findByEmail(credential);
+        }
+        if (ProfileUtils.isPhone(credential)) {
+            profile = profileRepo.findByPhone(credential);
+        }
+
+        if (profile != null) {
+            profileData.setLogin(profile.getLogin());
+            profileData.setEmail(profile.getEmail());
+            profileData.setPhone(profile.getPhone());
+            profileData.setImg(profile.getImg());
+        }
+
+        return profileData;
     }
 
     @Override
-    public Profile setProfile(Profile profile) {
+    public boolean setProfile(ProfileData profileData) {
         //TODO
-        return null;
+        //1) get credential of current user from autorization
+        //2) get this user from db
+        //3) set params from profileData
+        //4) save in db
+        //5) check
+        return false;
     }
 
     //TODO убрать отсюда, дублируется

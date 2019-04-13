@@ -1,8 +1,8 @@
 package ru.sberbook.sberbookroot.service;
 
-import ru.sberbook.sberbookroot.entity.Profile;
+import ru.sberbook.sberbookroot.dto.ProfileData;
 
 public interface ProfileUiService {
-    Profile getProfile(String credential);
-    Profile setProfile(Profile profile);
+    ProfileData getProfile(String credential);
+    boolean setProfile(ProfileData profile);
 }
