@@ -29,6 +29,8 @@ public class Profile {
     private String phone;
     private Date birth_date;
     private String img;
+    private String confirmationCode;
+    private String token;
 
     @JsonIgnore
     private String password;

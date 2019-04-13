@@ -7,4 +7,10 @@ public interface ProfileRepo extends JpaRepository<Profile,Long> {
     Profile findByEmail(String email);
 
     Profile findByLogin(String login);
+
+    Profile findByPhone(String phone);
+
+    Profile findByConfirmationCode(String confirmationCode);
+
+    Profile findByToken(String token);
 }

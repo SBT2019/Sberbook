@@ -23,13 +23,13 @@ public class ProfileServiceImpl implements ProfileService {
         boolean userInDB = checkInDb(credential, isEmail);
 
         if (userInDB) {
-            throw new IllegalStateException("User " + profile.getLogin() + " already exists");
+            throw new IllegalStateException("User " + credential + " already exists");
         }
 
         if (isEmail) {
             profile.setEmail(credential);
         } else {
-            profile.setLogin(credential);
+            profile.setPhone(credential);
         }
 
         profileRepo.save(profile);
@@ -40,20 +40,68 @@ public class ProfileServiceImpl implements ProfileService {
     public Profile findProfile(String credential) {
         return credential.contains("@") ?
                 profileRepo.findByEmail(credential)
-                : profileRepo.findByLogin(credential);
+                : profileRepo.findByPhone(credential);
+    }
+
+    @Override
+    public long getUserId(String credential) {
+        if(isPhone(credential)) {
+            Profile profile = profileRepo.findByPhone(credential);
+            return profile.getUser_id();
+        }
+
+        if(isEmail(credential)) {
+            Profile profile = profileRepo.findByEmail(credential);
+            return profile.getUser_id();
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean checkUser(String credential) {
+        if(isPhone(credential)) {
+            Profile profile = profileRepo.findByPhone(credential);
+            return profile != null;
+        }
+
+        if(isEmail(credential)) {
+            Profile profile = profileRepo.findByEmail(credential);
+            return profile != null;
+        }
+        return false;
+    }
+
+    @Override
+    public Profile findUserByConfirmationCode(String confirmationCode) {
+        Profile profile = profileRepo.findByConfirmationCode(confirmationCode);
+        return profile;
+    }
+
+    @Override
+    public Profile findUserByToken(String token) {
+        Profile profile = profileRepo.findByToken(token);
+        return profile;
+    }
+
+    private boolean isPhone(String credential) {
+        return !credential.contains("@");
+    }
+
+    private boolean isEmail(String credential) {
+        return credential.contains("@");
     }
 
     /**
      * Проверяет есть ли в базе такой профиль
      *
-     * @param credential - мыло или логин
+     * @param credential - мыло или телефон
      * @param email      - параметр, какой именно credential
      * @return возвращает, bool есть или нет в базе
      */
     private boolean checkInDb(String credential, boolean email) {
         Profile profile = email ?
                 profileRepo.findByEmail(credential) :
-                profileRepo.findByLogin(credential);
+                profileRepo.findByPhone(credential);
 
         return profile != null;
     }

@@ -17,10 +17,11 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @PostMapping("/createUser")
-    public boolean createUser(@RequestBody ProfileDto profileDto) { //todo: check profileDto name
+    public boolean createUser(@RequestBody ProfileDto profileDto) {
         try {
             return profileService.createUser(profileDto);
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -32,72 +33,45 @@ public class ProfileController {
 
     @GetMapping("/getUserId")
     public long getUserId(String credential) {
-        if (isEmail(credential)) return 7;
-        if (isPhone(credential)) return 15;
-        return 40;
+        try {
+            return profileService.getUserId(credential);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
-
-//    @GetMapping("/findUser")
-//    public Profile findUser(String credential) {
-//        if (isEmail(credential)) return new Profile("Alex", "gfdgdfgdf");
-//        if (isPhone(credential)) return new Profile("Dima", "gfdgdfgdf");;
-//
-//        return new Profile("Dasha", "FSDGFDGDF");
-//    }
-//
-//    @PostMapping("/createUser")
-//    public boolean createUser(Profile profile) {
-//        //TODO add user to cash
-//        return true;
-//    }
 
     @GetMapping("/checkUser")
     public boolean checkUser(String credential) {
-        if (isEmail(credential)) return true; //TODO find user by email
-        if (isPhone(credential)) return true; //TODO find user by phone
-
-        return false;
+        try {
+            return profileService.checkUser(credential);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    @PostMapping("/addUser")
-    public boolean addUser(Profile profile) {
-        //TODO add user to db
-        return true;
-    }
-
-    @GetMapping("/findUserByConfirmationCode") //TODO ?
+    @GetMapping("/findUserByConfirmationCode")
     public Profile findUserByConfirmationCode(String confirmationCode){
-        return new Profile("Roma","gfdgdfgdf"); //in cache
+        try {
+            return profileService.findUserByConfirmationCode(confirmationCode);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    @GetMapping("/findUserByResetToken") //TODO ?
+    @GetMapping("/findUserByResetToken")
     public Profile findUserByResetToken(String token){
-        return new Profile("Roma","gfdgdfgdf");
-    }
-
-    @PostMapping("/updateUser")
-    public boolean updateUser(Profile profile){
-        return true;
-    }
-
-
-    private boolean isPhone(String credential) {
-        return true;
-    }
-
-    private boolean isEmail(String credential) {
-        return credential.contains("@");
+        try {
+            return profileService.findUserByToken(token);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
-
-//    @RequestMapping("/updateUser")
-//    boolean updateUser(@RequestParam("profile") Profile profile);
-//
-//    @RequestMapping("/findUserByResetToken")
-//    Profile findUserByResetToken(@RequestParam("token") String token);
-//
-//    @RequestMapping("/checkUser")
-//    boolean checkProfile(@RequestParam("credential") String credential);
-//
-//    @RequestMapping("/findUserByConfirmationCode")
-//    Profile findUserByConfirmationCode(@RequestParam("confirmationCode") String confirmationCode);
