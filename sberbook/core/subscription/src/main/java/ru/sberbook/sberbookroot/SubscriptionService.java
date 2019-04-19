@@ -7,7 +7,7 @@ import java.util.List;
 public interface SubscriptionService {
     Flux<Long> getAllSubscriptions(long userId);
 
-    List<Long> getAllSubscribers(long userId);
+    List<SubscribtionsEntity> getAllSubscribers(long userId);
 
     void addSubscription(String userId, String subscriptionId);
 

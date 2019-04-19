@@ -28,7 +28,7 @@ public class SubscriptionController {
     }
 
     @GetMapping("/getAllSubscribers")
-    public List<Long> getAllSubscribers(long userId) {
+    public List<SubscribtionsEntity> getAllSubscribers(long userId) {
         try {
             return service.getAllSubscribers(userId);
         } catch (Exception e) {

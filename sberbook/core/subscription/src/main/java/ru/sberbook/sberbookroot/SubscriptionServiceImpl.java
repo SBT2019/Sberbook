@@ -11,12 +11,12 @@ import static reactor.core.publisher.Flux.fromStream;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
-    private final SubscriptionsRepository subscriptionsRepository;
-    private final  SubscribersRepository subscribersRepository;
+    private final SubscriptionRepository subscriptionRepository;
+    private final SubscriberRepository subscriberRepository;
 
-    public SubscriptionServiceImpl(SubscriptionsRepository subscriptionsRepository, SubscribersRepository subscribersRepository){
-        this.subscriptionsRepository = subscriptionsRepository;
-        this.subscribersRepository = subscribersRepository;
+    public SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository, SubscriberRepository subscriberRepository){
+        this.subscriptionRepository = subscriptionRepository;
+        this.subscriberRepository = subscriberRepository;
     }
 
     @Override
@@ -33,23 +33,28 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public List<Long> getAllSubscribers(long userId) {
-        return Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L);
+    public List<SubscribtionsEntity> getAllSubscribers(long userId) {
+        return subscriptionRepository.findByUserId(userId);
     }
 
     @Override
     public void addSubscription(String userId, String subscriptionId) {
+        subscriptionRepository.save(new SubscribtionsEntity(Long.parseLong(userId),Long.parseLong(subscriptionId)));
     }
 
     @Override
     public void addSubscriber(String userId, String subscriberId) {
+        subscriberRepository.save(new SubscribersEntity(Long.parseLong(userId),Long.parseLong(subscriberId)));
     }
 
     @Override
     public void deleteSubscription(String userId, String subscriptionId) {
+        subscriptionRepository.deleteSubscribtionsEntityByUserIdAndSubscriptionId(Long.parseLong(userId),Long.parseLong(subscriptionId));
+
     }
 
     @Override
     public void deleteSubscriber(String userId, String subscriberId) {
+        subscriberRepository.deleteSubscribersEntityByUserIdAndSubscriberId(Long.parseLong(userId),Long.parseLong(subscriberId));
     }
 }
