@@ -1,6 +1,7 @@
-package ru.sberbook.sberbookroot;
+package ru.sberbook.sberbookroot.repositories;
 
         import org.springframework.data.repository.CrudRepository;
+        import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
 
         import java.util.List;
 

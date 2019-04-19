@@ -1,4 +1,4 @@
-package ru.sberbook.sberbookroot;
+package ru.sberbook.sberbookroot.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
