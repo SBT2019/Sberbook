@@ -1,11 +1,9 @@
 package ru.sberbook.sberbookroot.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "SUSCRIBERS")
 public class SubscribersEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

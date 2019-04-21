@@ -1,5 +1,6 @@
 package ru.sberbook.sberbookroot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import ru.sberbook.sberbookroot.entities.SubscribersEntity;
@@ -14,7 +15,9 @@ import static reactor.core.publisher.Flux.fromStream;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
+    @Autowired
     private final SubscriptionRepository subscriptionRepository;
+    @Autowired
     private final SubscriberRepository subscriberRepository;
 
     public SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository, SubscriberRepository subscriberRepository){
