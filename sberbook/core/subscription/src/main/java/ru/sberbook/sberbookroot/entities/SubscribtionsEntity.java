@@ -1,9 +1,12 @@
 package ru.sberbook.sberbookroot.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name = "SUSCRIBTIONS")
 public class SubscribtionsEntity {

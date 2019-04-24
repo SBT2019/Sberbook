@@ -40,7 +40,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public List<SubscribtionsEntity> getAllSubscriptions(long userId) {
-        return subscriptionRepository.findByUserId(userId);
+        List<SubscribtionsEntity> entities = subscriptionRepository.findByUserId(userId);
+        return entities;
     }
 
     @Override

@@ -1,7 +1,10 @@
 package ru.sberbook.sberbookroot.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Table(name = "SUSCRIBERS")
 public class SubscribersEntity {
