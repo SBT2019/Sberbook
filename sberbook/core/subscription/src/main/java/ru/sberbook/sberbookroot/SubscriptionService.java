@@ -1,13 +1,15 @@
 package ru.sberbook.sberbookroot;
 
-import reactor.core.publisher.Flux;
+import ru.sberbook.sberbookroot.entities.SubscribersEntity;
+import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
 
 import java.util.List;
 
 public interface SubscriptionService {
-    Flux<Long> getAllSubscriptions(long userId);
+    //Flux<Long> getAllSubscriptions(long userId);
+    List<SubscribtionsEntity> getAllSubscriptions(long userId);
 
-    List<Long> getAllSubscribers(long userId);
+    List<SubscribersEntity> getAllSubscribers(long userId);
 
     void addSubscription(String userId, String subscriptionId);
 
