@@ -11,15 +11,15 @@ import java.util.UUID;
 @Table(name = "SUSCRIBTIONS")
 public class SubscribtionsEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long userId;
     private Long subscriptionId;
 
-    protected SubscribtionsEntity(){
+    protected SubscribtionsEntity() {
     }
 
-    public SubscribtionsEntity(Long userId,Long subscriptionId){
+    public SubscribtionsEntity(Long userId, Long subscriptionId) {
         this.userId = userId;
         this.subscriptionId = subscriptionId;
     }

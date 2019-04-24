@@ -7,7 +7,7 @@ import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
 import java.util.List;
 
 @Repository
-public interface SubscriptionRepository extends JpaRepository<SubscribtionsEntity,Long> {
+public interface SubscriptionRepository extends JpaRepository<SubscribtionsEntity, Long> {
 
     List<SubscribtionsEntity> findByUserId(Long userId);
 

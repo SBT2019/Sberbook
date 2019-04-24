@@ -9,15 +9,15 @@ import javax.persistence.*;
 @Table(name = "SUSCRIBERS")
 public class SubscribersEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long userId;
     private Long subscriberId;
 
-    protected SubscribersEntity(){
+    protected SubscribersEntity() {
     }
 
-    public SubscribersEntity(Long userId,Long subscriberId){
+    public SubscribersEntity(Long userId, Long subscriberId) {
         this.userId = userId;
         this.subscriberId = subscriberId;
     }
