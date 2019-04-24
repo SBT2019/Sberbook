@@ -49,8 +49,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public void addSubscriber(String userId, String subscriberId) {
+    public boolean addSubscriber(String userId, String subscriberId) {
         subscriberRepository.save(new SubscribersEntity(Long.parseLong(userId),Long.parseLong(subscriberId)));
+        return true;
     }
 
     @Override

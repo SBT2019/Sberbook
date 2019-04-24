@@ -12,7 +12,7 @@ public interface SubscriptionService {
 
     void addSubscription(String userId, String subscriptionId);
 
-    void addSubscriber(String userId, String subscriberId);
+    boolean addSubscriber(String userId, String subscriberId);
 
     void deleteSubscription(String userId, String subscriptionId);
 
