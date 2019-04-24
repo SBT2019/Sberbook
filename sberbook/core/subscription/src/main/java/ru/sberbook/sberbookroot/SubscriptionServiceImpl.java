@@ -1,6 +1,5 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sberbook.sberbookroot.entities.SubscribersEntity;
 import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
