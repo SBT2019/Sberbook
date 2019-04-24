@@ -25,7 +25,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         this.subscriberRepository = subscriberRepository;
     }
 
-    @Override
+    /*@Override
     public Flux<Long> getAllSubscriptions(long userId) {
         return fromStream(range(0, 100_000)
                 .mapToObj(i -> {
@@ -36,11 +36,16 @@ public class SubscriptionServiceImpl implements SubscriptionService {
                     return 123456789L;
                 })
         );
+    }*/
+
+    @Override
+    public List<SubscribtionsEntity> getAllSubscriptions(long userId) {
+        return subscriptionRepository.findByUserId(userId);
     }
 
     @Override
-    public List<SubscribtionsEntity> getAllSubscribers(long userId) {
-        return subscriptionRepository.findByUserId(userId);
+    public List<SubscribersEntity> getAllSubscribers(long userId) {
+        return subscriberRepository.findByUserId(userId);
     }
 
     @Override
@@ -49,9 +54,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public boolean addSubscriber(String userId, String subscriberId) {
+    public void addSubscriber(String userId, String subscriberId) {
         subscriberRepository.save(new SubscribersEntity(Long.parseLong(userId),Long.parseLong(subscriberId)));
-        return true;
     }
 
     @Override

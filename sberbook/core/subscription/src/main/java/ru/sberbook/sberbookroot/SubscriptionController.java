@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import ru.sberbook.sberbookroot.entities.SubscribersEntity;
 import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class SubscriptionController {
         this.service = service;
     }
 
-    @GetMapping(value ="/getAllSubscriptions", produces = APPLICATION_STREAM_JSON_VALUE)
+    /*@GetMapping(value ="/getAllSubscriptions", produces = APPLICATION_STREAM_JSON_VALUE)
     public Flux<Long> getAllSubscriptions(long userId) {
         try {
             return service.getAllSubscriptions(userId);
@@ -29,10 +30,20 @@ public class SubscriptionController {
             log.info("Ошибка при получении списка подписок"+e);
             throw e;
         }
+    }*/
+
+    @GetMapping("/getAllSubscriptions")
+    public List<SubscribtionsEntity> getAllSubscriptions(long userId) {
+        try {
+            return service.getAllSubscriptions(userId);
+        } catch (Exception e) {
+            log.info("Ошибка при получении списка подписчиков"+e);
+            throw e;
+        }
     }
 
     @GetMapping("/getAllSubscribers")
-    public List<SubscribtionsEntity> getAllSubscribers(long userId) {
+    public List<SubscribersEntity> getAllSubscribers(long userId) {
         try {
             return service.getAllSubscribers(userId);
         } catch (Exception e) {
@@ -47,17 +58,15 @@ public class SubscriptionController {
             service.addSubscription(userId, subscriptionId);
         } catch (Exception e) {
             log.info("Ошибка при добавлении подписки"+e);
-            throw e;
         }
     }
 
     @PostMapping("/addSubscriber")
-    public boolean addSubscriber(String userId, String subscriberId) {
+    public void addSubscriber(String userId, String subscriberId) {
         try {
-            return service.addSubscriber(userId, subscriberId);
+             service.addSubscriber(userId, subscriberId);
         } catch (Exception e) {
             log.info("Ошибка при добавлении подписчика"+e);
-            return false;
         }
     }
 
@@ -67,7 +76,6 @@ public class SubscriptionController {
             service.deleteSubscription(userId, subscriptionId);
         } catch (Exception e) {
             log.info("Ошибка при удалении подписки"+e);
-            throw e;
         }
     }
 
@@ -77,7 +85,6 @@ public class SubscriptionController {
             service.deleteSubscriber(userId, subscriberId);
         } catch (Exception e) {
             log.info("Ошибка при удалении подписчика"+e);
-            throw e;
         }
     }
 }
