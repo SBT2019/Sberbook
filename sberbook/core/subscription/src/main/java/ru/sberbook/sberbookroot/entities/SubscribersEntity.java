@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "SUSCRIBERS")
+@Table(name = "SUBSCRIBERS")
 public class SubscribersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

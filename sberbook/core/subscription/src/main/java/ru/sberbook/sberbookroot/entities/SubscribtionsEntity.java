@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Getter
 @Entity
-@Table(name = "SUSCRIBTIONS")
+@Table(name = "SUBSCRIPTIONS")
 public class SubscribtionsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

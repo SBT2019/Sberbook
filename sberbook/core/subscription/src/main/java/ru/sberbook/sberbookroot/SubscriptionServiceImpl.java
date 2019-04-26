@@ -1,6 +1,5 @@
 package ru.sberbook.sberbookroot;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sberbook.sberbookroot.entities.SubscribersEntity;
 import ru.sberbook.sberbookroot.entities.SubscribtionsEntity;
@@ -11,9 +10,7 @@ import java.util.List;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
-    @Autowired
     private final SubscriptionRepository subscriptionRepository;
-    @Autowired
     private final SubscriberRepository subscriberRepository;
 
     public SubscriptionServiceImpl(SubscriptionRepository subscriptionRepository, SubscriberRepository subscriberRepository) {
@@ -44,12 +41,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public void deleteSubscription(String userId, String subscriptionId) {
-        subscriptionRepository.deleteSubscribtionsEntityByUserIdAndSubscriptionId(Long.parseLong(userId), Long.parseLong(subscriptionId));
-
+        subscriptionRepository.deleteById(subscriptionRepository.findSubscribtionsEntitiesByUserIdAndSubscriptionId(
+                Long.parseLong(userId), Long.parseLong(subscriptionId)).getId());
     }
 
     @Override
     public void deleteSubscriber(String userId, String subscriberId) {
-        subscriberRepository.deleteSubscribersEntityByUserIdAndSubscriberId(Long.parseLong(userId), Long.parseLong(subscriberId));
+        subscriberRepository.deleteById(subscriberRepository.findSubscribersEntityByUserIdAndSubscriberId(
+                Long.parseLong(userId), Long.parseLong(subscriberId)).getId());
     }
 }
