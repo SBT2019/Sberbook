@@ -41,12 +41,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public void deleteSubscription(String userId, String subscriptionId) {
-        subscriptionRepository.deleteSubscribtionsEntityByUserIdAndSubscriptionId(Long.parseLong(userId), Long.parseLong(subscriptionId));
-
+        subscriptionRepository.deleteById(subscriptionRepository.findSubscribtionsEntitiesByUserIdAndSubscriptionId(
+                Long.parseLong(userId), Long.parseLong(subscriptionId)).getId());
     }
 
     @Override
     public void deleteSubscriber(String userId, String subscriberId) {
-        subscriberRepository.deleteSubscribersEntityByUserIdAndSubscriberId(Long.parseLong(userId), Long.parseLong(subscriberId));
+        subscriberRepository.deleteById(subscriberRepository.findSubscribersEntityByUserIdAndSubscriberId(
+                Long.parseLong(userId), Long.parseLong(subscriberId)).getId());
     }
 }
