@@ -1,0 +1,91 @@
+body{
+  background: rgb(244, 248, 249);
+  padding: 20px 40px;
+  font-family: helvetica;
+}
+
+.main-box{
+  margin-top: 5px; 
+  border: 2px solid rgb(225, 232, 237);
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  padding: 35px 35px;
+  width: 600px;
+  height: auto;
+  position: relative;
+  left: 200px
+}
+
+#profile-pic{
+  float:left;
+}
+
+#profile-pic img{
+  width: auto;
+  height: 80px;
+  border-radius: 5px;
+}
+
+#profile-data{
+  float:left;
+  margin-left: 25px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#profile-data img{
+  width: auto;
+  height: 20px;
+  margin-left: 5px; 
+}
+
+#id{
+  color: rgb(104, 109, 129);
+  font-size: 19px;
+  margin-left: -5px;
+  font-weight: bold;
+}
+
+#follow-button{
+  float:right;
+  padding: 13px 27px;
+  background: rgb(255, 255, 255);
+  border: 3.5px solid rgb(85, 172, 238);
+  border-radius: 8px;
+  color: rgb(85, 172, 238);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#follow-button img {
+  width: auto;
+  height: 20px;
+}
+
+#text{
+  clear:left;
+  font-size: 18px;
+  padding: 25px 0px 12px 0px;
+}
+
+#time{
+  font-size: 18px;
+  color: rgb(104, 109, 129);
+  padding-bottom: 30px;
+}
+
+#footer {
+  margin-top: -20px;
+}
+
+#footer img{
+  width: auto;
+  height: 15px;
+}
+
+a {
+  color: rgb(104, 109, 129);
+  font-size: 14px;
+  text-decoration: none;
+  margin-right: 35px;
+}

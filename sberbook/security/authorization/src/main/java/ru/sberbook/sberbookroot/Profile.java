@@ -13,5 +13,12 @@ public class Profile {
         return String.valueOf(pass.hashCode()).equals(passwordHash);
     }
 
-    public void setPassword(String password) { this.passwordHash = String.valueOf(password.hashCode()); }
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public void setPassword(String password) { this.passwordHash = String.valueOf(password.hashCode());
+
+
+    }
 }

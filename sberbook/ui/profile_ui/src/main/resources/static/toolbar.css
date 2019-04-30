@@ -1,0 +1,88 @@
+.toolbar {
+    position: relative;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+    height: 60px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.toolbar:hover {
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+    height: 60px;
+}
+
+.toolbar-container {
+    width: 320px;
+    height: 60px;
+    
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+.toolbar-container h5 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: grey;
+
+    margin-top: 5px;
+}
+
+.toolbar-container p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: grey;
+
+    margin-top: -8px;
+}
+
+.toolbar-button1 {
+    position: absolute;
+    border: none;
+    background-color: inherit;
+    height: 60px;
+    width: 100px;
+}
+
+.toolbar-button2 {
+    position: absolute;
+    left: 80px;
+}
+
+.toolbar-button3 {
+    position: absolute;
+    left: 160px;
+}
+
+.toolbar-button4 {
+    position: absolute;
+    left: 240px;
+}
+
+.button {    
+    border: none;
+    background-color: inherit;
+    height: 60px;
+    width: 80px;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+
+.button:hover {
+    border-bottom: solid;
+    border-color: #00aaff;
+    border-width: 4px;
+}
+
+.button:hover p {
+    color: #00aaff;
+}
+
+
+

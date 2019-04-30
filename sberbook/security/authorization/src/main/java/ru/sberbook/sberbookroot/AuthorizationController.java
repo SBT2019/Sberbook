@@ -1,15 +1,20 @@
 package ru.sberbook.sberbookroot;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @RestController
 public class AuthorizationController {
+    @Autowired
+    private final UserRepository userRepository;
+
     private final ProfileClient profileClient;
     private final EmailService emailService;
 
@@ -18,7 +23,9 @@ public class AuthorizationController {
         Profile profile = profileClient.findProfile(credential);
         if (profile == null) return false;
 
-        return profile.validatePassword(pass);
+        Optional<User> optUser = userRepository.findById(profile.getId());
+        User user = optUser.get();
+        return validatePass(user.getHashPass(),pass);
     }
 
     @PostMapping("/forgot")
@@ -40,7 +47,11 @@ public class AuthorizationController {
         Profile profile = profileClient.findUserByResetToken(resetCode);
         if (profile == null) return false;
 
-        profile.setPassword(newPass);
+        Optional<User> optUser = userRepository.findById(profile.getId());
+        User user = optUser.get();
+        user.setHashPass(String.valueOf(newPass.hashCode()));
+        userRepository.save(user);
+
         profile.setResetToken(null);
         profileClient.updateUser(profile);
 
@@ -64,5 +75,9 @@ public class AuthorizationController {
         Pattern pattern = Pattern.compile(regex);
         if (credential == null) return false;
         return pattern.matcher(credential).matches();
+    }
+
+    private boolean validatePass(String hashPass, String inputPass){
+        return (hashPass.equals(String.valueOf(inputPass.hashCode())));
     }
 }
