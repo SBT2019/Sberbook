@@ -32,22 +32,28 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public void addSubscription(String userId, String subscriptionId) {
         subscriptionRepository.save(new SubscribtionsEntity(Long.parseLong(userId), Long.parseLong(subscriptionId)));
+        subscriberRepository.save(new SubscribersEntity(Long.parseLong(subscriptionId), Long.parseLong(userId)));
     }
 
     @Override
     public void addSubscriber(String userId, String subscriberId) {
         subscriberRepository.save(new SubscribersEntity(Long.parseLong(userId), Long.parseLong(subscriberId)));
+        subscriptionRepository.save(new SubscribtionsEntity(Long.parseLong(subscriberId), Long.parseLong(userId)));
     }
 
     @Override
     public void deleteSubscription(String userId, String subscriptionId) {
         subscriptionRepository.deleteById(subscriptionRepository.findSubscribtionsEntitiesByUserIdAndSubscriptionId(
                 Long.parseLong(userId), Long.parseLong(subscriptionId)).getId());
+        subscriberRepository.deleteById(subscriberRepository.findSubscribersEntityByUserIdAndSubscriberId(
+                Long.parseLong(subscriptionId), Long.parseLong(userId)).getId());
     }
 
     @Override
     public void deleteSubscriber(String userId, String subscriberId) {
         subscriberRepository.deleteById(subscriberRepository.findSubscribersEntityByUserIdAndSubscriberId(
                 Long.parseLong(userId), Long.parseLong(subscriberId)).getId());
+        subscriptionRepository.deleteById(subscriptionRepository.findSubscribtionsEntitiesByUserIdAndSubscriptionId(
+                Long.parseLong(subscriberId), Long.parseLong(userId)).getId());
     }
 }
