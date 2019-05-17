@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SberBook</title>
+</head>
+
+<body>
+
+
+<div> О чем Вы думаете?
+    <form method="post">
+        <input type="text" name="text" placeholder="Введите сообщение"/>
+        <input type="text" name="tag" placeholder="Тэг">
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+
+<div> Лента
+    <form method="get">
+        <input type="text" name="filter" placeholder="Найти по тэгу"/>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <button type="submit">Найти</button>
+
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th> UserId</th>
+                    <th> Text</th>
+                    <th> Tag</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${tweets == null}">
+                    <td colspan="2"> No Tweets Available</td>
+                </tr>
+                <tr th:each="tweet : ${tweets}">
+                    <td><span th:text="${tweet.userId}"> User Id </span></td>
+                    <td><span th:text="${tweet.getText()}"> Text </span></td>
+                    <td><span th:text="${tweet.getTag()}"> Tag </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+
+</html>
